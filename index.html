@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, sans-serif;
+      background: #0d1117;
+      color: #e6edf3;
+      overflow: hidden;
+      height: 100vh;
+    }
+    .slider {
+      display: flex;
+      width: 100vw;
+      height: 100vh;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+    }
+    .page {
+      flex: 0 0 100vw;
+      height: 100vh;
+      scroll-snap-align: start;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      padding: 40px 60px;
+    }
+    .top-text {
+      max-width: 820px;
+      width: 100%;
+      font-size: 1.2rem;
+      line-height: 1.5;
+      white-space: pre-line;
+      text-align: center;
+    }
+    .bottom-pic {
+      max-width: 820px;
+      max-height: 58vh;
+      width: auto;
+      height: auto;
+      border-radius: 10px;
+      object-fit: contain;
+    }
+    .nav {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 1px solid #30363d;
+      background: #161b22;
+      color: #e6edf3;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+    #prev { left: 14px; }
+    #next { right: 14px; }
+  </style>
+</head>
+<body>
+  <button class="nav" id="prev">&#8592;</button>
+  <button class="nav" id="next">&#8594;</button>
+  <main class="slider" id="slider"></main>
+
+  <script>
+    const slider = document.getElementById('slider');
+
+    function imageExists(src) {
+      return new Promise((resolve) => {
+        const img = new Image();
+        img.onload = () => resolve(true);
+        img.onerror = () => resolve(false);
+        img.src = src;
+      });
+    }
+
+    fetch('projects.json')
+      .then((r) => r.json())
+      .then(async (slots) => {
+        for (const item of slots) {
+          if (!item || !item.image || !item.image.trim()) continue;
+          const file = item.image.trim();
+          if (!(await imageExists(file))) continue;
+
+          const page = document.createElement('section');
+          page.className = 'page';
+
+          const textEl = document.createElement('div');
+          textEl.className = 'top-text';
+          textEl.textContent = (item.text || '').trim();
+
+          const imgEl = document.createElement('img');
+          imgEl.className = 'bottom-pic';
+          imgEl.src = file;
+          imgEl.alt = file;
+
+          page.appendChild(textEl);
+          page.appendChild(imgEl);
+          slider.appendChild(page);
+        }
+      });
+
+    document.getElementById('prev').onclick = () => slider.scrollBy({ left: -window.innerWidth, behavior: 'smooth' });
+    document.getElementById('next').onclick = () => slider.scrollBy({ left: window.innerWidth, behavior: 'smooth' });
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') slider.scrollBy({ left: window.innerWidth, behavior: 'smooth' });
+      if (e.key === 'ArrowLeft') slider.scrollBy({ left: -window.innerWidth, behavior: 'smooth' });
+    });
+  </script>
+</body>
+</html>
