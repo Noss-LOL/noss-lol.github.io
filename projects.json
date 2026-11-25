@@ -1,12 +1,12 @@
 [
-  { "text": "", "image": "" },
-  { "text": "", "image": "" },
-  { "text": "", "image": "" },
-  { "text": "", "image": "" },
-  { "text": "", "image": "" },
-  { "text": "", "image": "" },
-  { "text": "", "image": "" },
-  { "text": "", "image": "" },
-  { "text": "", "image": "" },
-  { "text": "", "image": "" }
+  { "text": " ", "image": "" },
+  { "text": " ", "image": "" },
+  { "text": " ", "image": "" },
+  { "text": "A Pygame Project of a Square to be moved by WASD or Arrow keys.", "image": "pygame_square.png" },
+  { "text": "Random Password Generator for Accounts, emails and other things and contains Numbers, Lowercase and Uppercase letters scrambled and random.", "image": "pass_generator.png" },
+  { "text": "A Encoder (And Decoder) for text and files with a shuffled and encrypted output and decrypted output in the mode 'Decode' (I cant show the cipher map because it will reveal the hidden cryptographic map).", "image": "encode_decode.png" },
+  { "text": "A text-Based game Of a Coin Toss/Flip with wins, losses and Streak counter.", "image": "coin_flip.png" },
+  { "text": "A Python text Calculator with basic Arithmetic.", "image": "calc.png" },
+  { "text": "A Program That Takes the Input and tells What angle it is (Acute, Right, etc).", "image": "angle_name.png" },
+  { "text": "A Binary encoder and decoder with 2 modes and it Encodes Normal English into raw perfect 8-Bit Binary Values.", "image": "binary_encode.png" }
 ]
