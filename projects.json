@@ -1,5 +1,5 @@
 [
-  { "text": "Welcome.", "image": "Intro.png" },
+  { "text": "Welcome.", "image": "INTRO.png" },
   { "text": " ", "image": "" },
   { "text": " ", "image": "" },
   { "text": "Pygame square mover controlled with WASD or Arrow keys.", "image": "pygame_square.png" },
